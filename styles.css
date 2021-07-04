@@ -1,0 +1,296 @@
+:root {
+  background: #000;
+  padding-top: 20px;
+  --mercury-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/mercury2.jpg);
+  --mercury-tilt: rotate(0.034deg);
+  --mercury-day: 1407.6;
+  --mercury-color: #999;
+  --venus-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/venus2.jpg);
+  --venus-tilt: rotate(177.3deg);
+  --venus-day: 5832.5;
+  --venus-color: #e8cda2;
+  --earth-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/earth.jpg);
+  --earth-tilt: rotate(23.26deg);
+  --earth-day: 23.9;
+  --earth-color: #b3caff;
+  --mars-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/mars.jpg);
+  --mars-tilt: rotate(25.2deg);
+  --mars-day: 24.6;
+  --mars-color: #c07158;
+  --jupiter-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/jupiter.jpg);
+  --jupiter-tilt: rotate(3.1deg);
+  --jupiter-day: 9.9;
+  --jupiter-color: #c9b5a4;
+  --saturn-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/saturn.jpg);
+  --saturn-tilt: rotate(26.7deg);
+  --saturn-day: 10.7;
+  --saturn-color: #f0e2c4;
+  --uranus-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/uranus2.jpg);
+  --uranus-tilt: rotate(97.8deg);
+  --uranus-day: 17.2;
+  --uranus-color: #b8d8e1;
+  --neptune-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/neptune.jpg);
+  --neptune-tilt: rotate(28.3deg);
+  --neptune-day: 16.1;
+  --neptune-color: #5e73bb;
+  --pluto-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/pluto.jpg);
+  --pluto-tilt: rotate(122.5deg);
+  --pluto-day: 153.3;
+  --pluto-color: #c3b6aa;
+  --sun-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/sun.jpg);
+  --sun-tilt: rotate(0deg);
+  --sun-day: 600;
+  --sun-color: #cc9f4c;
+  --card-size: 200px;
+}
+
+@keyframes circlePlanet {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+.card {
+  display: inline-flex;
+  flex-direction: column;
+  width: var(--card-size);
+  margin: 0 20px 40px;
+  position: relative;
+  font: 14px "Major Mono Display", sans-serif;
+  text-transform: lowercase;
+}
+.card .planet:after {
+  content: "";
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  box-shadow: inset -25px 0px 24px 10px black;
+  border-radius: 50%;
+}
+.card .atmosphere {
+  position: relative;
+}
+.card .atmosphere:before {
+  content: "";
+  top: -20px;
+  bottom: -20px;
+  left: 50%;
+  margin-left: -1px;
+  right: 0;
+  width: 1px;
+  z-index: -1;
+  position: absolute;
+  border-left: 2px dashed var(--sun-color);
+}
+.card .surface {
+  position: relative;
+  background-repeat: repeat-x;
+  background-size: cover;
+  background-position: center;
+  width: var(--card-size);
+  height: var(--card-size);
+  border-radius: 50%;
+}
+.card .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  color: #fff;
+  text-align: center;
+  transform: scale(2);
+  opacity: 0;
+  border-radius: 50%;
+  transition: all linear 0.3s;
+  z-index: -1;
+}
+.card .title {
+  margin: 0 0 10px;
+}
+.card .form {
+  padding: 0 15px;
+}
+.card .item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.card .label {
+  flex-shrink: 0;
+  padding-right: 5px;
+}
+.card .detail, .card .svg-inline--fa {
+  flex-shrink: 0;
+}
+.card .line {
+  border-bottom: 1px dashed #fff;
+  flex-grow: 1;
+  margin: 0 5px;
+}
+.card.mercury .atmosphere:before {
+  border-color: var(--mercury-color);
+  transform: var(--mercury-tilt);
+}
+.card.mercury .surface {
+  transform: var(--mercury-tilt);
+  background-image: var(--mercury-image);
+  animation: circlePlanet calc(var(--mercury-day)*.1s) infinite linear;
+}
+.card.mercury .svg-inline--fa {
+  transform: var(--mercury-tilt);
+}
+.card.mercury .svg-inline--fa path {
+  fill: var(----mercury-color);
+}
+.card.venus .atmosphere:before {
+  border-color: var(--venus-color);
+  transform: var(--venus-tilt);
+}
+.card.venus .surface {
+  transform: var(--venus-tilt);
+  background-image: var(--venus-image);
+  animation: circlePlanet calc(var(--venus-day)*.1s) infinite linear;
+}
+.card.venus .svg-inline--fa {
+  transform: var(--venus-tilt);
+}
+.card.venus .svg-inline--fa path {
+  fill: var(--venus-color);
+}
+.card.earth .atmosphere:before {
+  border-color: var(--earth-color);
+  transform: var(--earth-tilt);
+}
+.card.earth .surface {
+  transform: var(--earth-tilt);
+  background-image: var(--earth-image);
+  animation: circlePlanet calc(var(--earth-day)*.1s) infinite linear;
+}
+.card.earth .svg-inline--fa {
+  transform: var(--earth-tilt);
+}
+.card.earth .svg-inline--fa path {
+  fill: var(--earth-color);
+}
+.card.mars .atmosphere:before {
+  border-color: var(--mars-color);
+  transform: var(--mars-tilt);
+}
+.card.mars .surface {
+  transform: var(--mars-tilt);
+  background-image: var(--mars-image);
+  animation: circlePlanet calc(var(--mars-day)*.1s) infinite linear;
+}
+.card.mars .svg-inline--fa {
+  transform: var(--mars-tilt);
+}
+.card.mars .svg-inline--fa path {
+  fill: var(--mars-color);
+}
+.card.jupiter .atmosphere:before {
+  border-color: var(--jupiter-color);
+  transform: var(--jupiter-tilt);
+}
+.card.jupiter .surface {
+  transform: var(--jupiter-tilt);
+  background-image: var(--jupiter-image);
+  animation: circlePlanet calc(var(--jupiter-day)*.1s) infinite linear;
+}
+.card.jupiter .svg-inline--fa {
+  transform: var(--jupiter-tilt);
+}
+.card.jupiter .svg-inline--fa path {
+  fill: var(--jupiter-color);
+}
+.card.saturn .atmosphere:before {
+  border-color: var(--saturn-color);
+  transform: var(--saturn-tilt);
+}
+.card.saturn .surface {
+  transform: var(--saturn-tilt);
+  background-image: var(--saturn-image);
+  animation: circlePlanet calc(var(--saturn-day)*.1s) infinite linear;
+}
+.card.saturn .svg-inline--fa {
+  transform: var(--saturn-tilt);
+}
+.card.saturn .svg-inline--fa path {
+  fill: var(--saturn-color);
+}
+.card.uranus .atmosphere:before {
+  border-color: var(--uranus-color);
+  transform: var(--uranus-tilt);
+}
+.card.uranus .surface {
+  transform: var(--uranus-tilt);
+  background-image: var(--uranus-image);
+  animation: circlePlanet calc(var(--uranus-day)*.1s) infinite linear;
+}
+.card.uranus .svg-inline--fa {
+  transform: var(--uranus-tilt);
+}
+.card.uranus .svg-inline--fa path {
+  fill: var(--uranus-color);
+}
+.card.neptune .atmosphere:before {
+  border-color: var(--neptune-color);
+  transform: var(--neptune-tilt);
+}
+.card.neptune .surface {
+  transform: var(--neptune-tilt);
+  background-image: var(--neptune-image);
+  animation: circlePlanet calc(var(--neptune-day)*.1s) infinite linear;
+}
+.card.neptune .svg-inline--fa {
+  transform: var(--neptune-tilt);
+}
+.card.neptune .svg-inline--fa path {
+  fill: var(--neptune-color);
+}
+.card.pluto .atmosphere:before {
+  border-color: var(--pluto-color);
+  transform: var(--pluto-tilt);
+}
+.card.pluto .surface {
+  transform: var(--pluto-tilt);
+  background-image: var(--pluto-image);
+  animation: circlePlanet calc(var(--pluto-day)*.1s) infinite linear;
+}
+.card.pluto .svg-inline--fa {
+  transform: var(--pluto-tilt);
+}
+.card.pluto .svg-inline--fa path {
+  fill: var(--pluto-color);
+}
+.card.sun .planet:after {
+  box-shadow: none;
+}
+.card.sun .atmosphere:before {
+  border-color: var(--sun-color);
+  transform: var(--sun-tilt);
+}
+.card.sun .surface {
+  transform: var(--sun-tilt);
+  background-image: var(--sun-image);
+  animation: circlePlanet calc(var(--sun-day)*.1s) infinite linear;
+}
+.card.sun .svg-inline--fa {
+  transform: var(--sun-tilt);
+}
+.card.sun .svg-inline--fa path {
+  fill: var(--sun-color);
+}
+.card:hover .info {
+  transform: scale(1);
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
